@@ -11,7 +11,12 @@ path = "src/client.rs"
 name = "echo-server"
 path = "src/server.rs"
 
+[[bin]]
+name = "explore"
+path = "src/explore.rs"
+
 [dependencies]
+anyhow = "1.0.68"
 clap = { version = "4.1.4", features = ["derive"] }
 prost = "0.11.6"
 tokio = { version = "1.25.0", features = ["macros", "rt-multi-thread"] }
