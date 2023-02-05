@@ -1,7 +1,7 @@
+use ::jeffdb::log::fs::read_at;
 use std::{
     fs::{self, File, OpenOptions},
     io::{BufWriter, Read, Write},
-    os::windows::prelude::FileExt,
 };
 
 use anyhow::Result;
@@ -120,8 +120,8 @@ fn print_it(it: &[u8]) {
     println!("{}", v);
 }
 
-fn read_at(f: &File, buf: &mut [u8], off: u64) -> Result<usize> {
-    let z = f.seek_read(buf, off)?;
+// fn read_at(f: &File, buf: &mut [u8], off: u64) -> Result<usize> {
+//     let z = f.seek_read(buf, off)?;
 
-    Ok(z)
-}
+//     Ok(z)
+// }

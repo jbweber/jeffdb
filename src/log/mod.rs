@@ -58,6 +58,36 @@ impl Store {
     }
 }
 
+pub mod fs {
+    #[cfg(unix)]
+    pub use unix::*;
+
+    #[cfg(windows)]
+    pub use windows::*;
+
+    #[cfg(unix)]
+    mod unix {
+        use anyhow::Result;
+        use std::fs::File;
+        use std::os::unix::prelude::FileExt;
+
+        pub fn read_at(file: &File, buf: &mut [u8], off: u64) -> Result<usize> {
+            Ok(file.read_at(buf, off)?)
+        }
+    }
+
+    #[cfg(windows)]
+    mod windows {
+        use anyhow::Result;
+        use std::fs::File;
+        use std::os::windows::prelude::FileExt;
+
+        pub fn read_at(file: &File, buf: &mut [u8], off: u64) -> Result<usize> {
+            Ok(file.seek_read(buf, off)?)
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use std::{
