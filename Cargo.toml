@@ -12,10 +12,16 @@ name = "echo-server"
 path = "src/server.rs"
 
 [dependencies]
+anyhow = "1.0.68"
 clap = { version = "4.1.4", features = ["derive"] }
+futures = "0.3.26"
+parking_lot = "0.12.1"
 prost = "0.11.6"
 tokio = { version = "1.25.0", features = ["macros", "rt-multi-thread"] }
 tonic = "0.8.3"
+
+[dev-dependencies]
+tempfile = "3"
 
 [build-dependencies]
 tonic-build = "0.8.4"
